@@ -23,7 +23,7 @@ const PORT = process.env.PORT || 3000
 const DOCKER = process.env.DOCKER || 'y'
 const COL = process.env.COL || '6'
 
-// Serve directory index
+// Serve directory index - enable different number of columns
 if (['4', '5', '6', '7', '8', '9', '10'].indexOf(COL) < 0) {
   console.log('Invalid env value for COL (4 to 10) >' + COL)
 
@@ -36,7 +36,7 @@ if (['4', '5', '6', '7', '8', '9', '10'].indexOf(COL) < 0) {
       'template': '/usr/src/serve-files-plus/templates/directory.html',
       'stylesheet': `/usr/src/serve-files-plus/templates/style${COL}.css`
     }
-  } else {
+  } else { // for Node.JS test environment
     options = {
       'icons': true,
       'template': './templates/directory.html',
