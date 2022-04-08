@@ -1,0 +1,9 @@
+Show all ENV variables: dir env:
+view at "localhost:8080"
+
+$ENV:PORT='8080'
+$ENV:CONTENT_DIR='..'
+$ENV:TEST_CASE='yes'
+$ENV:DOCKER='n'
+node .\server.js
+

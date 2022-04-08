@@ -1,0 +1,78 @@
+body {
+  background-color: #0d6efd;
+}
+
+/* general */
+ul li {
+  list-style: none;
+}
+a {
+  color: rgb(253, 239, 239);
+  text-decoration: none;
+}
+
+/* files */ 
+ul#files {
+  display: inline-block;
+  overflow: hidden;
+}
+
+/* 100% / 6 Columns = 16.6% */
+ul#files li {
+  float: left;
+  width: 16.6%;
+  line-height: 25px;
+}
+/* only file names */
+ul#files li a {
+  display: block;
+  height: 25px;
+  overflow: hidden;
+  white-space: nowrap;
+}
+ul#files li a:focus,
+ul#files li a:hover {
+  background: rgba(255,255,255,0.65);
+  border: 1px solid #ececec;
+}
+ul#files li a.highlight {
+  background: #4f93ff4f;
+  border-color: #4f93ff4f;
+}
+#files span {
+  display: inline-block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-indent: 10px;
+  color: rgb(35, 38, 38)
+}
+#files .name {
+  background-repeat: no-repeat;
+}
+#files .icon .name {
+  text-indent: 28px;
+}
+
+/*tiles*/
+.view-tiles .name {
+  width: 100%;
+  background-position: 8px 5px;
+}
+
+
+@media (max-width: 1200px) {
+  ul#files li {
+    float: left;
+    width: 25%;
+    line-height: 25px;
+  }
+}
+
+
+@media (max-width: 768px) {
+  ul#files li {
+    float: left;
+    width: 50%;
+    line-height: 25px;
+  }
+}
