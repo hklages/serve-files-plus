@@ -61,7 +61,6 @@ Use the directory index to select and copy the http-link for that file Make that
 TODO:
 
 - handle the tags
-- enlarge the container
 - hidden file on/off via ENV?
 - resize columns via http request?
 - improve directory structure
