@@ -26,9 +26,9 @@ Using the same terminal session, you can restart the app with
 Use laptop - docker
 
 ```Docker
-docker build -t heklages/serve-files-plus:0.1.1 -f Dockerfile .
+docker build -t heklages/serve-files-plus:0.1.2 -f Dockerfile .
 docker login
-docker push heklages/serve-files-plus:0.1.1
+docker push heklages/serve-files-plus:0.1.2
 docker logout
 ```
 
@@ -60,7 +60,9 @@ Use the directory index to select and copy the http-link for that file Make that
 
 TODO:
 
-- handle the tags
+- CAUTION: When editing directory.html and eslint enabled the line with the style is malformatted and has to be corrected (1 line)
+- create tag latest
+- issue with portainer and manifests
 - hidden file on/off via ENV?
 - resize columns via http request?
 - improve directory structure
