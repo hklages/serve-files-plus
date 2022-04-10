@@ -19,7 +19,6 @@ The message "internal server error" may occur if the content file/directory is n
  sudo docker run -itd \
 -p "8080:3000" \
 -v "/volume1/MultiMedia/others:/opt/public:ro" \
--e "NODE_ENV=production" \
 -e "COL=4" \
  -- <your container name> \
   <your image name>
