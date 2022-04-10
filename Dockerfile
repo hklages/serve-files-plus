@@ -18,7 +18,7 @@ WORKDIR /opt/serve-files-plus
 # https://github.com/nodejs/docker-node/blob/master/docs/BestPractices.md#non-root-user
 USER node
 COPY --chown=node:node package.json package-lock.json* ./
-RUN npm install ci --no-optional && npm cache clean --force
+RUN npm install ci --no-optional --only=production && npm cache clean --force
 ENV PATH /opt/serve-files-plus/node_modules/.bin:$PATH
 
 #copy app server.js and template directory
