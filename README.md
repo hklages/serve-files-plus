@@ -8,6 +8,8 @@ My Synology NAS acts as primary data server for multimedia, videos but also invo
 
 Just mount the data read only to the container, assign a free port and use any browser to select the files, copy the link and insert that link into other application. Tested for mp3 files (notifications), pdf, jpg, png, odt (documents) files.
 
+The message "internal server error" may occure if the file/directory is not accessable"
+
 ### Docker command
 
 ```Docker

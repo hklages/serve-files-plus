@@ -3,12 +3,12 @@
 /** 
  * Serves files or shows directory index in a given directory and its subdirectory.
  * 
- * ENV variables are required
- * - CONTENT_DIRECTORY: full path to directory
- * - PORT: available port such as 8080, ...
- * - COL: number of columns in directory listing, 4 to 10
+ * ENV variables
+ * - COL: number of columns in directory listing, '4' to '10', default is '4'
  * 
- * - DOCKER: default is y - to run in non-Docker environment use 'n'
+ * - DOCKER: to run non-Docker NodeJS use 'n', default ist 'y'
+ * - CONTENT_DIRECTORY: location of served content, default is /opt/public
+ * The last to are only used for testing on native NodeJS (not in container) 
  * 
  * from: https://www.npmjs.com/package/serve-index
 */
@@ -18,10 +18,11 @@ const finalHandler = require('finalhandler')
 const serveIndex = require('serve-index')
 const serveStatic = require('serve-static')
 
-const CONTENT_DIRECTORY = process.env.CONTENT_DIR || '/srv'
-const PORT = process.env.PORT || 3000
+const CONTENT_DIRECTORY = process.env.CONTENT_DIRECTORY || '/opt/public'
 const DOCKER = process.env.DOCKER || 'y'
-const COL = process.env.COL || '6'
+const COL = process.env.COL || '4'
+
+const PORT = 3000
 
 // Serve directory index - enable different number of columns
 if (['4', '5', '6', '7', '8', '9', '10'].indexOf(COL) < 0) {
@@ -33,14 +34,14 @@ if (['4', '5', '6', '7', '8', '9', '10'].indexOf(COL) < 0) {
   if (DOCKER === 'y') {
     options = {
       'icons': true,
-      'template': '/usr/src/serve-files-plus/templates/directory.html',
-      'stylesheet': `/usr/src/serve-files-plus/templates/style${COL}.css`
+      'template': '/opt/serve-files-plus/src/templates/directory.html',
+      'stylesheet': `/opt/serve-files-plus/src/templates/style${COL}.css`
     }
-  } else { // for Node.JS test environment
+  } else { // for NodeJS test environment
     options = {
       'icons': true,
-      'template': './templates/directory.html',
-      'stylesheet': `./templates/style${COL}.css`
+      'template': './src/templates/directory.html',
+      'stylesheet': `./src/templates/style${COL}.css`
     }
   }
   const index = serveIndex(CONTENT_DIRECTORY, options)

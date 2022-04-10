@@ -1,42 +1,38 @@
-## Process from code to running docker
+## The Chain: Code to Run in Docker or native NodeJS
 
-### Developing on LaptopWin11
+### Developing on laptop-win11
 
-Use VScode to edit data in `.\development\serve-files-plus` directory and publish to github.
-Data is on laptop (no mount).
+Use VScode to edit data in `<user>.\development\serve-files-plus` directory and publish to github.
 
-Push each change to the github repository (inside vscode)!
+Use github as repository.
 
-### Test the app in NodeJS on LaptopWin11
+### Test the app in NodeJS on laptop-win11
 
 Use VScode - terminal and paste:
 
-`$ENV:PORT='8080'; $ENV:CONTENT_DIR='..'; $ENV:TEST_CASE='yes'; $ENV:DOCKER='n'; node .\server.js`
+`$ENV:PORT='8080'; $ENV:CONTENT_DIRECTORY='.'; $ENV:DOCKER='n'; node .\src\server.js`
 
 You can verify that ENV are set with `dir env:`
 
-You should see the page in any browser at address `localhost:8080`
+You should see the page in any browser at address `localhost:3000`
 
 Using the same terminal session, you can restart the app with
 
-`node .\server.js`
+`node .\src\server.js`
 
-### Build the Docker image and push it to the Docker hub on LaptopWin11
+### Build the Docker image and push it to the Docker hub on laptop-win11
 
 Use laptop - docker
 
 ```Docker
-docker build -t heklages/serve-files-plus:0.1.2 -f Dockerfile .
+docker build -t heklages/serve-files-plus:<version> -f Dockerfile .
 docker login
-docker push heklages/serve-files-plus:0.1.2
+docker push heklages/serve-files-plus:<version>
 docker logout
 ```
 
 All images:
 `docker images`
-
-Retag an image
-`docker tag 6e0959951283 heklages/serve-files-plus:0.1.1`
 
 ### Run container at NAS (use the docker add on)
 
@@ -45,7 +41,7 @@ Use synology build in up or via command line
 ```Docker
 docker run -itd \
 -p "8080:3000" \
--v "/volume1/MultiMedia/others:/srv:ro" \
+-v "/volume1/MultiMedia/others:/opt/public:ro" \$
 -e "NODE_ENV=production" \
 -e "COL=4" \
 --name serve-files-plus \
