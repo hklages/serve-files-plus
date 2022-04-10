@@ -1,4 +1,5 @@
 node_modules\
-eslintrc.json
-create.sh
-TestInNodeJs.txt
+build\
+.eslintrc.json
+.gitignore
+LICENSE

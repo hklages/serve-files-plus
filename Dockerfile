@@ -29,6 +29,7 @@ COPY --chown=node:node package.json package-lock.json* ./
 RUN npm install ci --no-optional && npm cache clean --force
 ENV PATH /opt/serve-files-plus/node_modules/.bin:$PATH
 
+#copy app server.js and template directory
 COPY --chown=node:node ./src/ /opt/serve-files-plus/src/
 
 # default to port 3000 for node
@@ -36,5 +37,6 @@ ENV PORT=3000
 EXPOSE $PORT
 VOLUME  /opt/public
 
-# Data mount point
+# still need root as mountpoint has owner root
+USER root
 ENTRYPOINT ["node", "/opt/serve-files-plus/src/server.js"]

@@ -1,6 +1,8 @@
 #!/bin/bash
 
-# PURPOSE
+#### Currently not in use - must be in Docker directory!
+
+# PURPOSE 
 # Shell Script to Build Docker Image and Start the Container.
 # Existing images, container are deleted if exist.
 # Container must be running otherwise it is not detected.
@@ -14,8 +16,8 @@
 # port 8080 to container port 3000
 # mounts volume "/volume1/docker/MultiMedia/others" to container /srv, read only
 # defines the following names for container and image
-container_name="serve-files-plus"
-image_name="serve-files-plus:latest" 
+container_name="serve-files-test"
+image_name="serve-files-test:latest" 
 
 # remove existing image and build new 
 result=$( sudo docker images -q $image_name )
@@ -39,9 +41,9 @@ fi
 
 sudo docker run -itd \
 -p "8080:3000" \
--v "/volume1/MultiMedia/others:/srv:ro" \
+-v "/volume1/MultiMedia/others:/opt/public:ro" \
 -e "NODE_ENV=production" \
--e "COL=4" \
+-e "COL=5 \
 --name $container_name \
 $image_name 
 # end of docker run command
