@@ -41,7 +41,8 @@ All images:
 Use synology build in up or via command line
 
 ```Docker
-docker run -itd \
+docker run -itd --init\
+-m "300M" --memory-swap "1G" \
 -p "8080:3000" \
 -v "/volume1/MultiMedia/others:/opt/public:ro" \
 -e "NODE_ENV=production" \
@@ -56,6 +57,7 @@ In any browser: `hhNas.fritz.box:8080`
 
 Use the directory index to select and copy the http-link for that file Make that file available in Grocy user fields, link with title for relevant invoices and device manuals.
 
+- TODO remove eslint, etc from image, also yarn!
 - TODO how to use the node user and avoid root
 - TODO create tag latest
 - TODO issue with portainer and manifests
