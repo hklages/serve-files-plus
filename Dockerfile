@@ -5,7 +5,7 @@ ARG OS=alpine3.15
 FROM node:${NODE_VERSION}-${OS}
 
 LABEL AUTHOR heklages <nrcsplus@gmail.com>
-LABEL created 2022-04-11
+LABEL created 2022-04-12
 
 # defaults to production
 ARG NODE_ENV=production
@@ -36,6 +36,7 @@ EXPOSE $PORT
 # As it is read only we can not change permission
 VOLUME /opt/public
 
-# We need root :-( - See above Volume
+# root necessary to use as default and be able to add user
+# if env UID exist su to UID in script.
 USER root
-ENTRYPOINT ["node", "/opt/serve-files-plus/src/server.js"]
+ENTRYPOINT ["sh", "./src/start_node_with_uid.sh"]
