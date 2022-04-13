@@ -36,6 +36,8 @@ Example: Mounted read only and UID set to owner of the files being served:
 serve-files-plus/latest
 ```
 
+Be aware that only /bin/sh is supported in Node.js alpine based images.
+
 ### Exposes
 
 - Port 3000
