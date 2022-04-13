@@ -33,6 +33,9 @@ docker push heklages/serve-files-plus:<version>
 docker logout
 ```
 
+On Windows Docker environment
+`docker build -t serve-files-plus:test -f Dockerfile .`
+
 All images:
 `docker images`
 
@@ -47,8 +50,15 @@ docker run -itd --init\
 -v "/volume1/MultiMedia/others:/opt/public:ro" \
 -e "NODE_ENV=production" \
 -e "COL=4" \
+-e "UID=1000" \
 --name serve-files-plus \
 heklages/server-files-plus 
+```
+
+On Windows Docker environment:
+
+```Docker
+docker run -itd --init -m "300M" --memory-swap "1G" -p "8081:3000" -v "C:\Intel:/opt/public:ro" -e "NODE_ENV=production" -e "COL=4" -e "UID=1000" --name  hbeta serve-files-plus:test 
 ```
 
 ### Use case
@@ -58,8 +68,6 @@ In any browser: `hhNas.fritz.box:8080`
 Use the directory index to select and copy the http-link for that file Make that file available in Grocy user fields, link with title for relevant invoices and device manuals.
 
 - TODO remove eslint, etc from image, also yarn!
-- TODO how to use the node user and avoid root
-- TODO create tag latest
 - TODO issue with portainer and manifests
 - TODO hidden file on/off via ENV?
 - TODO resize columns via http request?

@@ -17,7 +17,7 @@
 # mounts volume "/volume1/docker/MultiMedia/others" to container /srv, read only
 # defines the following names for container and image
 container_name="serve-files-test"
-image_name="serve-files-test:latest" 
+image_name="serve-files-test:beta5" 
 
 # remove existing image and build new 
 result=$( sudo docker images -q $image_name )
