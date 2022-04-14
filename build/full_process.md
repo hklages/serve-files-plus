@@ -71,3 +71,4 @@ Use the directory index to select and copy the http-link for that file Make that
 - TODO issue with portainer and manifests
 - TODO hidden file on/off via ENV?
 - TODO resize columns via http request?
+- TODO use git actions
