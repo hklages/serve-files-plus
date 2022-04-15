@@ -21,11 +21,11 @@ WORKDIR /opt/serve-files-plus
 
 USER node
 COPY --chown=node:node package.json package-lock.json* ./
-RUN npm ci --production && npm cache clean --force
+RUN npm i --production && npm cache clean --force
 ENV PATH=/opt/serve-files-plus/node_modules/.bin:$PATH
 
 #copy app server.js and template directory
-COPY --chown=node:node ./src/ /opt/serve-files-plus/src/
+COPY --chown=node:node ./src/ ./src/
 
 # default to port 3000 for node
 ENV PORT=3000

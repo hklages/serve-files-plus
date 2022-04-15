@@ -66,5 +66,10 @@ if (['4', '5', '6', '7', '8', '9', '10'].indexOf(COL) < 0) {
   // Listen
   server.listen(PORT)
   console.log('Now listening on port >' + PORT)
-} 
+}
+
+// Signal handling
+process.on('SIGTERM', function () {
+  console.log('SIGTERM: shutting down...')
+})
   

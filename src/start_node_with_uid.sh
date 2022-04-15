@@ -22,7 +22,7 @@
 
 echo "starting script $0"
 
-if [ -z ${UID+x}  ]; then 
+if [ -z ${UID+x} ]; then 
   echo "UID is unset -> starting Node.js at user root"
   node  /opt/serve-files-plus/src/server.js
 elif [ $UID -eq 0 ]; then

@@ -1,6 +1,6 @@
 {
   "name": "serve-files-plus",
-  "version": "0.1.5",
+  "version": "0.2.1",
   "description": "Serves files or shows directory index in a given directory and its subdirectory.",
   "main": "./server.js",
   "scripts": {
