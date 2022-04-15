@@ -50,19 +50,23 @@ if (['4', '5', '6', '7', '8', '9', '10'].indexOf(COL) < 0) {
   const serve = serveStatic(CONTENT_DIRECTORY)
    
   // Create server and respond
-  const server = http.createServer(function onRequest (req, res) {
-    console.log('Request received >' + req.url)
+  const server = http.createServer((req, res) => {
     const done = finalHandler(req, res)
-    serve(req, res, function onNext (err) {
-      
+    serve(req, res, (err) => {
+      console.log('Request received >' + req.url)
       if (err) {
         console.log(JSON.stringify(err))
         return done(err)
+      } else {
+        index(req, res, done)
+        console.log('Done >' + req.url)
       }
-      index(req, res, done)
     })
   })
    
+  // Error handling 
+  server.on('error', (err) => console.log(err))
+  
   // Listen
   server.listen(PORT)
   console.log('Now listening on port >' + PORT)

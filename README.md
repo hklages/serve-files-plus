@@ -2,9 +2,9 @@
 
 Serve files and shows directory index of a given directory and its subdirectories.
 
-Just mount your data **read only** and assign a free port. Then use a browser to select any file, copy the link and insert that link into any other application. You can traverse through directories or search files (in viewed directory)
-
 ![view](./docs/view.jpg)
+
+Just mount your data **read only** and assign a free port. Then use a browser to select any file, copy the link and insert that link into any other application. You can traverse through directories or search files (in viewed directory)
 
 ## Security
 
