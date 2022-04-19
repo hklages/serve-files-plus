@@ -8,9 +8,12 @@ Just mount your data **read only** and assign a free port. Then use a browser to
 
 ## Security
 
-The container does not change any data or permissions of the served files/directories and supports also read-only mounted data.
+The container does not change any data or permissions of the served files/directories and supports read-only mounted volumes.
 
-To run Node.js as non-root you can specify the owner of the served files (ENV UID). This user is being created inside the container, added to group node and being used to start Node.js.
+A user "node" with UID=1000 and group node with GID=1000 is available inside the container.
+
+To run Node.js as non-root you can specify a UID. This user is being created inside the container, added to group "node" (in case UID=1000 the existing user is used) and being used to start Node.js
+Be aware that some installations (such as Synology NAS) per default may not allow access to files except for the owner of the file. In that case you should specify the UID of the owner of the mounted files.
 
 The image is based on serve-index, standard Node.js 17 alpine image, Bootstrap 5 and should only be used in a local network (http).
 
@@ -22,11 +25,11 @@ My Synology NAS acts as primary data server for multimedia, videos but also invo
 
 Tested on Synology NAS for mp3 files (notifications), pdf, jpg, png, odt (documents) files.
 
-The message "internal server error" may occur if node is started with a different uid as the owner (and not root) of the files.
+The message "internal server error" may occur if the permission of a file does not allow read access. 
 
 ## Docker command
 
-Example: Mounted read only and UID set to owner of the files being served:
+Example: Mounted read only and UID set to owner (1026) of the files being served:
 
 ```Docker
  sudo docker run -itd \

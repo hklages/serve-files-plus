@@ -1,0 +1,15 @@
+version: "3.9"
+
+services:
+  sfp:
+    container_name: sfp
+    image: heklages/serve-files-plus:0.2.0
+    environment:
+      - TZ=Europe/Berlin
+      - UID=1000
+      - NODE_ENV=production
+      - COL=4
+    ports:
+      - "8081:3000"
+    volumes:
+      - "C:/Intel:/opt/public"
