@@ -1,11 +1,11 @@
 # inspired by https://github.com/BretFisher/node-docker-good-defaults/blob/main/Dockerfile
-ARG NODE_VERSION=17.8.0
-ARG OS=alpine3.15
+ARG NODE_VERSION=19.9.0
+ARG OS=alpine3.17.3
 
 FROM node:${NODE_VERSION}-${OS}
 
 LABEL AUTHOR heklages <nrcsplus@gmail.com>
-LABEL created 2022-04-12
+LABEL created 2023-04-11
 
 # defaults to production
 ARG NODE_ENV=production

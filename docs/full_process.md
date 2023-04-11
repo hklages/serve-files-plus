@@ -1,10 +1,18 @@
 ## The Chain: From Code to Run in Docker or native NodeJS
 
-### Codin on laptop-win11
+### Coding on laptop-win11
 
 VScode to edit data in `<user>.\development\serve-files-plus` directory and publish to github repository hklages serve-files-plus
 
 - CAUTION: When editing directory.html and eslint enabled the line with the style is incorrect and has to be corrected (1 line)
+
+Change things such the
+
+- bootstrap version in .\src\template\directory.html
+- the dependencies in package.json (and do the npm update in that directory)
+- the overall experience in the style sheets or directory.html
+- the code in server.js
+- ...
 
 ### Testing app in Node.js on laptop-win11
 
@@ -15,8 +23,13 @@ Use VScode - terminal and paste:
 You can verify that ENV are set with `dir env:` (`printenv` in linux)
 
 You should see the page in any browser at address `localhost:8080`
+(the default is 3000)
 
 Using the same terminal session, restart it with `node .\src\server.js`
+
+### Update the Dockerfile
+
+VScode to edit the Dockerfile and change things such the Alpine image.
 
 ### Build Docker image and push it to Docker hub on laptop-win11
 
@@ -36,7 +49,7 @@ List of images:
 
 ### Run container at NAS (using the Synology Docker package)
 
-Use the Docker package or Bitwise SSH client: 
+Use the Docker package or Bitwise SSH client:
 
 ```Docker
 docker run -itd --init\

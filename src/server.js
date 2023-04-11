@@ -21,8 +21,7 @@ const serveStatic = require('serve-static')
 const CONTENT_DIRECTORY = process.env.CONTENT_DIRECTORY || '/opt/public'
 const DOCKER = process.env.DOCKER || 'y'
 const COL = process.env.COL || '4'
-
-const PORT = 3000
+const PORT = process.env.PORT || 3000
 
 // Serve directory index - enable different number of columns
 if (['4', '5', '6', '7', '8', '9', '10'].indexOf(COL) < 0) {

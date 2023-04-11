@@ -25,7 +25,7 @@ My Synology NAS acts as primary data server for multimedia, videos but also invo
 
 Tested on Synology NAS for mp3 files (notifications), pdf, jpg, png, odt (documents) files.
 
-The message "internal server error" may occur if the permission of a file does not allow read access. 
+The message "internal server error" may occur if the permission of a file does not allow read access.
 
 ## Docker command
 
