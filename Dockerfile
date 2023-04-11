@@ -1,6 +1,7 @@
 # inspired by https://github.com/BretFisher/node-docker-good-defaults/blob/main/Dockerfile
-ARG NODE_VERSION=19.9.0
-ARG OS=alpine3.17.3
+# check availability of combination at https://hub.docker.com/_/node/
+ARG NODE_VERSION=19
+ARG OS=alpine3.17
 
 FROM node:${NODE_VERSION}-${OS}
 
