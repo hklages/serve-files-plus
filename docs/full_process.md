@@ -39,13 +39,16 @@ Docker for Windows: `docker build -t heklages/serve-files-plus:<version> -f Dock
 Copy the files from Windows Development to NAS Development\DockerBuildImage. Sometimes dockerignore causes error messages.
 Use Docker on NAS: `sudo docker build -t heklages/serve-files-plus:<version> -f Dockerfile .`
 
-Then push it to Docker Hub
+Then push it to Docker Hub - do it twice for version and tag latest.
 
 ```Docker
 sudo docker login
 sudo docker push heklages/serve-files-plus:<version>
 sudo docker logout
 ```
+
+Tag as latest:
+`sudo docker tag heklages/serve-files-plus:0.2.6 heklages/serve-files-plus:latest`
 
 List of images:
 `docker images`
@@ -55,7 +58,7 @@ List of images:
 Use the Docker package or Bitwise SSH client:
 
 ```Docker
-docker run -itd --init\
+sudo docker run -itd --init \
 -m "300M" --memory-swap "1G" \
 -p "8080:3000" \
 -v "/volume1/MultiMedia/others:/opt/public:ro" \
@@ -63,7 +66,7 @@ docker run -itd --init\
 -e "COL=4" \
 -e "UID=1000" \
 --name serve-files-plus \
-heklages/server-files-plus 
+heklages/serve-files-plus:latest 
 ```
 
 On Windows Docker environment:
