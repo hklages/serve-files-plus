@@ -35,10 +35,10 @@ VScode to edit the Dockerfile and change things such the Alpine image.
 
 Docker for Windows: `docker build -t serve-files-plus:<version> -f Dockerfile .`
 
-Use Docker pn NAS
+Use Docker on NAS
 
 ```Docker
-docker build -t heklages/serve-files-plus:<version> -f Dockerfile .
+docker build -t hklages/serve-files-plus:<version> -f Dockerfile .
 docker login
 docker push heklages/serve-files-plus:<version>
 docker logout
