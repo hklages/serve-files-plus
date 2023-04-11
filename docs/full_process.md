@@ -29,19 +29,22 @@ Using the same terminal session, restart it with `node .\src\server.js`
 
 ### Update the Dockerfile
 
-VScode to edit the Dockerfile and change things such the Alpine image.
+VScode to edit the Dockerfile and change things such the Alpine image version, Node version (must)
 
 ### Build Docker image and push it to Docker hub on laptop-win11
 
-Docker for Windows: `docker build -t serve-files-plus:<version> -f Dockerfile .`
+Notice that heklages is being used as that is the user on DockerHub
+Docker for Windows: `docker build -t heklages/serve-files-plus:<version> -f Dockerfile .`
 
-Use Docker on NAS
+Copy the files from Windows Development to NAS Development\DockerBuildImage. Sometimes dockerignore causes error messages.
+Use Docker on NAS: `sudo docker build -t heklages/serve-files-plus:<version> -f Dockerfile .`
+
+Then push it to Docker Hub
 
 ```Docker
-docker build -t hklages/serve-files-plus:<version> -f Dockerfile .
-docker login
-docker push heklages/serve-files-plus:<version>
-docker logout
+sudo docker login
+sudo docker push heklages/serve-files-plus:<version>
+sudo docker logout
 ```
 
 List of images:

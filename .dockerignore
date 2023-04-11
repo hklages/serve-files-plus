@@ -1,6 +1,4 @@
-node_modules\
-build\
-docs\
-.eslintrc.json
-.gitignore
-LICENSE
+.git\*
+build\*
+docs\*
+node_modules\*
