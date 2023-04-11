@@ -57,6 +57,8 @@ List of images:
 
 Use the Docker package or Bitwise SSH client:
 
+Caution: UID is set to 0 but better would be 1026 - but currently crashes.
+
 ```Docker
 sudo docker run -itd --init \
 -m "300M" --memory-swap "1G" \
@@ -64,7 +66,7 @@ sudo docker run -itd --init \
 -v "/volume1/MultiMedia/others:/opt/public:ro" \
 -e "NODE_ENV=production" \
 -e "COL=4" \
--e "UID=1000" \
+-e "UID=0" \
 --name serve-files-plus \
 heklages/serve-files-plus:latest 
 ```
@@ -83,8 +85,11 @@ Use the directory index to select and copy the http-link for that file Make that
 
 In any browser: `hhNas.fritz.box:8080`
 
+You can enter terminal mod with \bin\sh and inspect the container
+
 ### Open issues
 
+- TODO UID=1026 - check why not working
 - TODO catch internal server error in case of missing permissions
 - TODO issue with portainer and manifests
 - TODO remove eslint, etc from image, also yarn!
