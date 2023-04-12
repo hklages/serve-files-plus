@@ -33,11 +33,13 @@ VScode to edit the Dockerfile and change things such the Alpine image version, N
 
 ### Build Docker image and push it to Docker hub on laptop-win11
 
-Notice that heklages is being used as that is the user on DockerHub
-Docker for Windows: `docker build -t heklages/serve-files-plus:<version> -f Dockerfile .`
+Notice that heklages is being used as that is the user on DockerHub - adjust the version!
+Docker for Windows: `docker build -t heklages/serve-files-plus:0.2.7 -f Dockerfile .`
 
 Copy the files from Windows Development to NAS Development\DockerBuildImage. Sometimes dockerignore causes error messages.
-Use Docker on NAS: `sudo docker build -t heklages/serve-files-plus:<version> -f Dockerfile .`
+Use Docker on NAS:Copy from Windows to /Development/BuildDockerImage and go that directory
+
+`sudo docker build -t heklages/serve-files-plus:0.2.7 -f Dockerfile .`
 
 Then push it to Docker Hub - do it twice for version and tag latest.
 
@@ -57,7 +59,7 @@ List of images:
 
 Use the Docker package or Bitwise SSH client:
 
-Caution: UID is set to 0 but better would be 1026 - but currently crashes.
+Caution: UID should be set to 1026 - change last 2 lines
 
 ```Docker
 sudo docker run -itd --init \
@@ -66,9 +68,9 @@ sudo docker run -itd --init \
 -v "/volume1/MultiMedia/others:/opt/public:ro" \
 -e "NODE_ENV=production" \
 -e "COL=4" \
--e "UID=0" \
---name serve-files-plus \
-heklages/serve-files-plus:latest 
+-e "UID=1026" \
+--name serve-files-plus-7 \
+heklages/serve-files-plus:0.2.7 
 ```
 
 On Windows Docker environment:

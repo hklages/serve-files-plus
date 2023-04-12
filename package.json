@@ -1,7 +1,7 @@
 {
   "name": "serve-files-plus",
-  "version": "0.2.4",
-  "description": "Serves files or shows directory index in a given directory and its subdirectory.",
+  "version": "0.2.5",
+  "description": "Serves files or shows directory index in a given directory.",
   "main": "",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
