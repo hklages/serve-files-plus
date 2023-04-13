@@ -1,20 +1,22 @@
 {
   "name": "serve-files-plus",
-  "version": "0.2.5",
-  "description": "Serves files or shows directory index in a given directory.",
+  "version": "1.0.0",
+  "description": "Launch web server to show directory index, copy file links and download it.",
   "main": "",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
-    "http", "file server", "static", "directory"
+    "http",
+    "file server",
+    "static",
+    "directory"
   ],
   "author": "hklages",
   "license": "MIT",
   "dependencies": {
-    "serve-index": "1.9.1",
-    "serve-static": "1.15.0",
-    "finalhandler": "1.2.0"
+    "express": "^4.18.2",
+    "serve-index": "1.9.1"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^5.58.0",

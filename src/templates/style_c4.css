@@ -11,18 +11,14 @@ a {
   text-decoration: none;
 }
 
-/* files */ 
-ul#files {
-  display: inline-block;
-  overflow: hidden;
-}
 
-/* 100% / 9 Columns = 11.1% */
+/* 100% / 4 Columns = 25% */
 ul#files li {
   float: left;
-  width: 11.1%;
+  width: 25%;
   line-height: 25px;
 }
+
 /* only file names */
 ul#files li a {
   display: block;

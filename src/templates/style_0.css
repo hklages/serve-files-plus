@@ -1,0 +1,45 @@
+:root {
+  background-color: lightgrey;
+}
+
+/* remove the point in front */
+ul li {
+  list-style: none;
+}
+
+/*  Set 4 Columns = 25% per row */
+ul#files li {
+  float: left;
+  width: 25%;
+  line-height: 25px;
+}
+
+/* only file names no date, ellipsis for overflow*/
+ul#files li a {
+  display: block;
+  height: 25px;
+  overflow: hidden;
+  white-space: nowrap;
+}
+#files span {
+  display: inline-block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-indent: 10px;
+  color: grey /* link color*/
+}
+#files .name {
+  background-repeat: no-repeat;
+}
+.view-tiles .name {
+  width: 100%;  /* this makes the other data hidden*/
+  background-position: 8px 5px;
+}
+
+/* space between icon and name*/
+#files .icon .name {
+  text-indent: 25px;
+}
+
+
+

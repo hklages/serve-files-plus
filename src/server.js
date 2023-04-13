@@ -6,73 +6,46 @@
  * ENV variables
  * - COL: number of columns in directory listing, '4' to '10', default is '4'
  * 
+ * For testing purposes only: 
  * - DOCKER: to run non-Docker NodeJS use 'n', default ist 'y'
  * - CONTENT_DIRECTORY: location of served content, default is /opt/public
- * The last to are only used for testing on native NodeJS (not in container) 
  * 
- * from: https://www.npmjs.com/package/serve-index
+ * credits to: https://www.npmjs.com/package/serve-index
 */
 
-const http = require('http')
-const finalHandler = require('finalhandler')
+const express = require('express')
 const serveIndex = require('serve-index')
-const serveStatic = require('serve-static')
+
+const app = express()
 
 const CONTENT_DIRECTORY = process.env.CONTENT_DIRECTORY || '/opt/public'
 const DOCKER = process.env.DOCKER || 'y'
-const COL = process.env.COL || '4'
+const STYLE = process.env.STYLE || 'style_0'
 const PORT = process.env.PORT || 3000
 
-// Serve directory index - enable different number of columns
-if (['4', '5', '6', '7', '8', '9', '10'].indexOf(COL) < 0) {
-  console.log('Invalid env value for COL (4 to 10) >' + COL)
-
-} else {
- 
-  let options
-  if (DOCKER === 'y') {
-    options = {
-      'icons': true,
-      'template': '/opt/serve-files-plus/src/templates/directory.html',
-      'stylesheet': `/opt/serve-files-plus/src/templates/style${COL}.css`
-    }
-  } else { // for NodeJS test environment
-    options = {
-      'icons': true,
-      'template': './src/templates/directory.html',
-      'stylesheet': `./src/templates/style${COL}.css`
-    }
-  }
-  const index = serveIndex(CONTENT_DIRECTORY, options)
-   
-  // Serve files in directory
-  const serve = serveStatic(CONTENT_DIRECTORY)
-   
-  // Create server and respond
-  const server = http.createServer((req, res) => {
-    const done = finalHandler(req, res)
-    serve(req, res, (err) => {
-      console.log('Request received >' + req.url)
-      if (err) {
-        console.log(JSON.stringify(err))
-        return done(err)
-      } else {
-        index(req, res, done)
-        console.log('Done >' + req.url)
-      }
-    })
-  })
-   
-  // Error handling 
-  server.on('error', (err) => console.log(err))
-  
-  // Listen
-  server.listen(PORT)
-  console.log('Now listening on port >' + PORT)
+// set the path - docker production or non-docker development
+let templatePath = '/opt/serve-files-plus/src/templates/' 
+if (DOCKER === 'n') {
+  templatePath = './src/templates/'
 }
 
-// Signal handling
-process.on('SIGTERM', function () {
-  console.log('SIGTERM: shutting down...')
+// default are serve-index examples
+let options = {
+  'icons': true,
+  'template': `${templatePath}directory_original.html`,
+  'stylesheet': `${templatePath}style_original.css`
+}
+
+// Serve directory index - enable different number of columns
+if (['style_0', 'style_c4', 'style_c6', 'style_col8',  'style_col10'].indexOf(STYLE) >= 0) {
+  options = {
+    'icons': true,
+    'template': `${templatePath}directory_bootstrap.html`,
+    'stylesheet': `${templatePath}${STYLE}.css`
+  }
+}
+
+app.use('/', express.static(CONTENT_DIRECTORY), serveIndex(CONTENT_DIRECTORY, options))
+app.listen(PORT, function () {
+  console.log('listening on port ' + PORT)
 })
-  
