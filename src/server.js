@@ -1,14 +1,14 @@
 'use strict'
 
 /** 
- * Serves files or shows directory index in a given directory and its subdirectory.
+ * Shows directory content. Enables user to drill down directory structure, view/download files
+ * and copy the file link (standard browser functionality).
  * 
  * ENV variables
- * - COL: number of columns in directory listing, '4' to '10', default is '4'
- * 
- * For testing purposes only: 
- * - DOCKER: to run non-Docker NodeJS use 'n', default ist 'y'
  * - CONTENT_DIRECTORY: location of served content, default is /opt/public
+ * - STYLE: If set and equal to "style_original" the original files from serve-index are being used.
+ * - DOCKER: to run non-Docker NodeJS use 'n', default ist 'y'
+
  * 
  * credits to: https://www.npmjs.com/package/serve-index
 */
@@ -19,9 +19,10 @@ const serveIndex = require('serve-index')
 const app = express()
 
 const CONTENT_DIRECTORY = process.env.CONTENT_DIRECTORY || '/opt/public'
-const DOCKER = process.env.DOCKER || 'y'
 const STYLE = process.env.STYLE || 'style_0'
 const PORT = process.env.PORT || 3000
+
+const DOCKER = process.env.DOCKER || 'y'
 
 // set the path - docker production or non-docker development
 let templatePath = '/opt/serve-files-plus/src/templates/' 
@@ -29,21 +30,21 @@ if (DOCKER === 'n') {
   templatePath = './src/templates/'
 }
 
-// default are serve-index examples
+// default - my data
 let options = {
   'icons': true,
-  'template': `${templatePath}directory_original.html`,
-  'stylesheet': `${templatePath}style_original.css`
+  'template': `${templatePath}directory.html`,
+  'stylesheet': `${templatePath}style.css`
 }
-
-// Serve directory index - enable different number of columns
-if (['style_0', 'style_c4', 'style_c6', 'style_col8',  'style_col10'].indexOf(STYLE) >= 0) {
+// option to use the original definitions from serve-index
+if (['style_original'].includes(STYLE)) {
   options = {
     'icons': true,
-    'template': `${templatePath}directory_bootstrap.html`,
-    'stylesheet': `${templatePath}${STYLE}.css`
+    'template': `${templatePath}directory_original.html`,
+    'stylesheet': `${templatePath}style_original.css`
   }
 }
+console.log(`Using template ${options.template} and stylesheet ${options.stylesheet}`)
 
 app.use('/', express.static(CONTENT_DIRECTORY), serveIndex(CONTENT_DIRECTORY, options))
 app.listen(PORT, function () {

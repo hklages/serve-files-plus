@@ -8,11 +8,10 @@ VScode to edit data in `..\development\serve-files-plus` directory and publish t
 
 Change things such the
 
-- bootstrap version in .\src\template\directory.html
 - the dependencies in package.json (and do the npm update in that directory)
 - server.js
 - directory.html, styles.css to change the frontend appearance
-- ...
+- package.json (and do npm update)
 
 ### Testing app in Node.js on laptop-win11
 
@@ -28,28 +27,29 @@ Using the same terminal session, restart it with `node .\src\server.js`
 
 ### Update the Dockerfile
 
-VScode to edit the Dockerfile and change things such the Alpine image version, Node version (must)
+VScode to edit the Dockerfile and change things such the Alpine image version, Node version (must fit together)
 
 ### Build Docker image and push it to Docker hub on laptop-win11
 
-Notice that heklages is being used as that is the user on DockerHub - adjust the version!
-Docker for Windows: `docker build -t heklages/serve-files-plus:0.2.7 -f Dockerfile .`
+Notice that heklages is being used as the user on DockerHub - adjust the version!
+Docker for Windows: `docker build -t heklages/serve-files-plus:1.0.1 -f Dockerfile .`
 
+if using Synology:
 Copy the files from Windows Development to NAS Development\DockerBuildImage. Sometimes dockerignore causes error messages.
 Use Docker on NAS:Copy from Windows to /Development/BuildDockerImage and go that directory
 
-`sudo docker build -t heklages/serve-files-plus:1.0.0 -f Dockerfile .`
+`sudo docker build -t heklages/serve-files-plus:1.0.1 -f Dockerfile .`
 
 Then push it to Docker Hub - do it twice for version and tag latest.
 
 ```Docker
 sudo docker login
-sudo docker push heklages/serve-files-plus:1.0.0
+sudo docker push heklages/serve-files-plus:1.0.1
 sudo docker logout
 ```
 
 Tag as latest:
-`sudo docker tag heklages/serve-files-plus:1.0.0 heklages/serve-files-plus:latest`
+`sudo docker tag heklages/serve-files-plus:1.0.1 heklages/serve-files-plus:latest`
 `sudo docker push heklages/serve-files-plus:latest`
 
 List of images:
@@ -67,16 +67,15 @@ sudo docker run -itd --init \
 -p "8080:3000" \
 -v "/volume1/MultiMedia/others:/opt/public:ro" \
 -e "NODE_ENV=production" \
--e "STYLE=style_0" \
 -e "UID=1026" \
 --name serve-files-plus \
-heklages/serve-files-plus:1.0.0 
+heklages/serve-files-plus:1.0.1 
 ```
 
 On Windows Docker environment:
 
 ```Docker
-docker run -itd --init -m "300M" --memory-swap "1G" -p "8081:3000" -v "C:\Intel:/opt/public:ro" -e "NODE_ENV=production" -e "COL=4" -e "UID=1000" --name  hbeta serve-files-plus:test 
+docker run -itd --init -m "300M" --memory-swap "1G" -p "8081:3000" -v "C:\Intel:/opt/public:ro" -e "NODE_ENV=production" -e "UID=1000" --name  hbeta serve-files-plus:test 
 ```
 
 docker run -itd --init -p "8081:3000" -v "C:\Intel:/opt/public:ro" -e "NODE_ENV=production" -e "COL=4" --name  hbeta serve-files-plus:test
