@@ -1,0 +1,65 @@
+:root {
+  --text-color: #4f4f4f;
+  --header-color: #6495ed;
+  --background-path-color: #cceeff;
+  font-family: Segoe UI,system-ui,-apple-system,sans-serif;
+  background-color: #fff8e5; 
+  color: var(--text-color);
+}
+
+#title_section {
+  padding-left: 1rem;
+}
+
+#path_section {
+  background-color: var(--background-path-color);
+  padding-bottom: 0.05rem;
+  padding-top: 0.05rem;
+  padding-left: 1rem;
+  border-radius: 25px;
+}
+
+h1 {
+  color: var(--header-color);
+}
+
+#path_section  a {
+  color: var(--text-color);
+  text-decoration: none;
+}
+
+/* as many columns as possible - responsive design*/
+ul#files {
+  columns: 10rem auto;
+  list-style: none;
+}
+
+/* only file names no date, ellipsis for overflow*/
+#files > li > a {
+  display: block;
+  height: 27px;
+  overflow: hidden;
+  white-space: nowrap;
+}
+#files span {
+  display: inline-block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-indent: 10px;
+  color: var(--text-color);/* link color*/
+}
+#files .name {
+  background-repeat: no-repeat;
+}
+.view-tiles .name {
+  width: 100%;  /* this makes the other data hidden*/
+  background-position: 10px 3px;
+}
+
+/* space between icon and name*/
+#files .icon .name {
+  text-indent: 30px;
+}
+
+
+
