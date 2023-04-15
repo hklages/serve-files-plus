@@ -14,17 +14,16 @@
 
 <body">
   
-    <div id="title_section" >
-      <h1>Content Of Selected Directory</h1>
-      <p>Click on any directory to drill down, on any file to view/download. Right click on any file to copy the link data. Use the path section to navigate back. </p>
-
+    <div id="intro_section" >
+      <h2>Directory Index</h1>
+      <p>Click on any directory to drill down, on any file to view/download. Right click on any file to copy the link data. Use the path section to navigate back.</p>
     </div>
     
     <div id="path_section">
       <p>Path: <a href="/">home</a>{linked-path}</p>
     </div>
     
-    <div>
+    <div id="file_section"> <!-- will be filled by serve-index with ul labeled id=files -->
         {files}
     </div>
 </body>

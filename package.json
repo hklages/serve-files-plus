@@ -1,6 +1,6 @@
 {
   "name": "serve-files-plus",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Launch web server to show directory index, copy file links and download it.",
   "main": "",
   "scripts": {
